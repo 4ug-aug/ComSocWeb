@@ -64,3 +64,63 @@ We see **not** surprisingly that the community with the least amount of nodes, f
 | Graph 4 | 10947 | 0.79 |
 
 Here we see that the graph for 2020-2024 actually has the lowest modularity, which means it is less dense than the other graphs. Although, this could just be the result of a shorter time period, and we would most likely expect the modularity to land at around 0.89, if we were to include the next 7 years.
+
+Let's visualize the giant components for each of the four 'decades' to better see whats going on. For each century we provide two plots; one where all communities found by the louvain split have been colored, and tone where only the three largest communities found by the louvain split are marked by color. In the code we have only run the analysis for the case where we set the color/group attribute of the nodes for all communities,  but to change this one should simply change the argument "only_paint_top_3 "in "mini_graphalyzer" to be true. 
+
+<div style="display:flex">
+  <figure style="margin:0">
+    <img src="/images/1990_1999.png" style="width:85%">
+    <figcaption style="text-align:center">1990-1999</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <img src="/images/1990_1999_top3.png" style="width:250%">
+    <figcaption style="text-align:center">1990-1999 Largest 3 Communities</figcaption>
+  </figure>
+</div>
+
+<div style="display:flex">
+  <figure style="margin:0">
+    <img src="/images/2000_2009.png" style="width:90%">
+    <figcaption style="text-align:center">2000-2009</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <img src="/images/2000_2009_top3.png" style="width:180%">
+    <figcaption style="text-align:center">2000-2009 Largest 3 Communities</figcaption>
+  </figure>
+</div>
+
+<div style="display:flex">
+  <figure style="margin:0">
+    <img src="/images/2010_2019.png" style="width:100%">
+    <figcaption style="text-align:center">2010-2019</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <img src="/images/2010_2019_top3.png" style="width:100%">
+    <figcaption style="text-align:center">2010-2019 Largest 3 Communities</figcaption>
+  </figure>
+</div>
+
+<div style="display:flex">
+  <figure style="margin:0">
+    <img src="/images/2020_present.png" style="width:100%">
+    <figcaption style="text-align:center">2020-present</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <img src="/images/2020_present_top3.png" style="width:95%">
+    <figcaption style="text-align:center">2020-present Largest 3 Communities</figcaption>
+  </figure>
+</div>
+
+
+om the plots above, we clearly see the community structure as found by the louvain algorithm fitting well together with the high modularity we found. 
+
+As a last thing before we move on to the text analysis, we investigate how the average citation count within the largest 3 communities compares to the average citation count of the entire giant component of their corresponding decade. With this we hope to verify that using the size of the community for choosing relevant communities makes sense.
+
+|     | Average Citation Count  | Average Citation Count in Largest Community  | Average Citation Count in Second Largest Community  | Average Citation Count in Third Largest Community  |
+|---|---|---|---|---|
+| Graph 1 | 107.31 | 201.79 | 74.38 | 140.66 |
+| Graph 2 | 88.66 | 118.83 | 140.37 | 57.21 |
+| Graph 3 | 53.33 | 47.00 | 43.28 | 30.92 |
+| Graph 4 | 16.71 | 15.93 | 21.95 | 12.00 |
+
+We find that the average citation count within the communities match fine with the average citation count within the entire component, even exceeding it in most cases. With this we believe that the choice of using size for choosing communities will work fine in terms of choosing relevant communities.
