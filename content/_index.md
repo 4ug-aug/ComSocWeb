@@ -4,36 +4,28 @@ layout: single
 next: data-description
 ---
 
-Donec posuere justo at risus [efficitur convallis](#). Donec enim nibh, aliquet vel risus id, tincidunt consectetur felis. Proin porttitor odio a orci accumsan bibendum id at risus. Sed a posuere odio, ac lobortis augue. Maecenas aliquet ipsum vel libero dignissim, non aliquet justo eleifend. Fusce mollis, ante eget tincidunt imperdiet, mi ligula venenatis ex, ut pulvinar nunc ipsum tempus eros. Aliquam erat volutpat. Sed id _iaculis arcu_, sit amet varius libero. Etiam quis nisl pretium, eleifend quam nec, rutrum sapien. **Donec rutrum accumsan orci.**
+# Motivation 
+Artificial intelligence has increasingly become a hot topic throughout the past decades. AI has moved from being an existatntial thread depicted on the silver screen depictions in dystopian science fiction thrillers such as Terminator and the Matrix, to being an intangible buzzword for pitching to investors to finally taking the world by storm with the release of complex AI driven tools such as  DALL-E, Midjourney  and ChatGPT. The graph below illustrates how the frequency of google searches on "Artificial Intelligence" has evolved during the past two decades (source: https://trends.google.com/trends/).
 
+<center>Google Trends: Artificial Intelligence</center>
 
-## Math formula
+![Picture](/images/google_trends_AI.png)
 
-
-$$ x^n + y^n = z^n $$
-
-## Code chunk
-
-```
-import pandas as pd
-
-df = pd.DataFrame()
-```
-
-Sed id orci ullamcorper, commodo sapien in, scelerisque nunc. Duis posuere sed nisl in gravida. Pellentesque rutrum justo ut mi tempus dignissim. Ut pulvinar quis urna ut molestie. Pellentesque nec arcu metus. Vivamus non rutrum magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-![](https://source.unsplash.com/random/?Copenhagen)
-
-Phasellus viverra tellus viverra purus placerat, et lacinia mauris tristique. Nam semper venenatis lorem, nec ullamcorper tortor dignissim eget. Etiam non ipsum sed neque pharetra ullamcorper. Praesent ultrices ipsum varius dictum lacinia. Nulla placerat magna augue, volutpat rutrum nulla finibus sed. Phasellus maximus mi sit amet risus mattis, porta rhoncus elit dictum. Donec vel viverra lectus, vitae elementum arcu. Quisque quis molestie elit. Cras eget tellus vitae risus fermentum bibendum vitae ac turpis. Praesent mi eros, scelerisque sit amet sem at, hendrerit accumsan ligula.
-
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec mauris aliquet, convallis ligula vel, mollis est. Fusce accumsan massa vel lectus dapibus, at vehicula elit auctor.
-
-| Column 1  | Column 2  |  Column 3 |
-|---|---|---|
-| 1 | 4 | 7 |
-| 2 | 5 | 8 |
-| 3 | 6 | 9 |
+From the outside, it seems that the way Artificial Intelligence is being talked about has changed a lot over the past decades, and to many people it may seem that it has not been talked about at all until recently (as suggested by the above figure). Therfore we wanted to examine these changes in a more quantitative manner, using the tools that were introduced in the DTU 02467 Computational Social Science Course.
 
 ## [Explainer Notebook](explainer-notebook.html)
 
-Aenean non augue vulputate, bibendum ligula ac, euismod arcu. Proin consequat, urna at lobortis sodales, ligula nulla molestie dolor, et interdum nulla arcu eu lacus. Aenean maximus mi vel augue blandit, quis vehicula libero egestas. In mollis nibh in turpis sodales, eget luctus sem pretium. Integer lobortis diam vel nisi laoreet, ut condimentum risus ultrices. Praesent diam risus, imperdiet at lorem in, hendrerit auctor ex.
+# The dataset
+
+The raw dataset collected for this project consists of the paper ID, title, abstract, year, citation count and references for 315.400 papers (645 MB) published between 1990 and 2023, though not all papers collected had information for every field queried. The data was collected by querying "Artificial Intelligence" with keyword search using the Semantic Scholar API, which limited the search depth to the first 10.000 papers. Therefore up to 10.000 papers were collected for each year examined. However, since the search was sorted by relevence, it was assumed that the first 10.000 papers found using keyword search would be sufficient to carry out the target analysis. Overall, it is worth noting that the described datacollection approach is itself a heuristic and the implications thereof in relation to the stated project goal are discussed in the final chapter.
+
+## Motivation behind the dataset
+We decided to query the Semantic Scholar API using the term "Artificial Intelligence" rather than terms like "Machine learning" or "Neural Networks" because we were more interested in getting an overview over how AI is talked about in relation to other fields and society as a whole rather than how the technical field of AI has evolved. From our personal experience, it appears that "Artificial Intelligence" is not commonly mentioned in technical papers discussing specific techniques within AI and machine learning, while, on the other hand, the term is commonly used in texts discussing the impact of the technology as a whole instead of its technical implimentations. 
+Though this analysis could also have been carried out by examining texts found in many other places, we found a few perceived advantages of focusing on scientific articles. We assumed that scientific articles would be a less "dirty" data source compared to collecting information from a more wide corpus such as by searching on goolge. Thus the resulting analysis might give a more clear image about what topics were being talked about at the time of publishing, as the authors aim to write articles that are relevant at the time of publishing and are more likely to be informed about the general topic of AI. On a similair note, scientific articles are not as opinionated as many other texts found on the internet. We were not interested in finding out how people feel about AI at a given time, but rather in which context the term existed.
+
+
+## Data Collection
+As we expected to partition the same dataset in multiple different ways for our analysis, we found it useful to save all data in a database using MongoDB. In this way, a pandas dataframe could quickly be constructed by querying the database. Thus it was not necessary to store the same data multiple times across different .csv files. Additionally, the database could manage simultanious incomming write requests from parallel processes, which were ID'ed by paper ID, such that no duplicates were made and data integrity was protected by avoiding race conditions.
+
+## Goal of analysis
+Artificial intelligence is a phrase that many people have never heard of until recently. We would like to show the end user that it is a topic that has been talked about for decades before the release of tools like ChatGPT. At the same time, we would like to give the end user an overview of how the topic has evolved with time.
