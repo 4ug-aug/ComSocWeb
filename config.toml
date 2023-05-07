@@ -7,7 +7,7 @@ theme = "theme"
     authors = ["Asbjørn Magnussen s183546", "Eigil Albek s201030", "August Tollerup s204139"]
     notebook = "/explainer-notebook.html"
     data = "https://drive.google.com"
-    github = "https://4ug-aug.github.io"
+    github = "https://github.com/4ug-aug/4ug-aug.github.io"
     [[params.nav]]
         label = "Data"
         link = "/data-description"
