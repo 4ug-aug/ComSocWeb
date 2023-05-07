@@ -1,4 +1,4 @@
-baseURL = "https://4ug-aug.github.io/ComSocWeb/"
+baseURL = "https://4ug-aug.github.io"
 title = "Temporal keyword analysis"
 description = "This project examines the development of the keyword Artificial Intelligence across research papers from 1990 to 2023."
 relativeURLs = true
@@ -7,7 +7,7 @@ theme = "theme"
     authors = ["Asbjørn Magnussen s183546", "Eigil Albek s201030", "August Tollerup s204139"]
     notebook = "/explainer-notebook.html"
     data = "https://drive.google.com"
-    github = "https://4ug-aug.github.io/ComSocWeb/"
+    github = "https://4ug-aug.github.io"
     [[params.nav]]
         label = "Data"
         link = "/data-description"
